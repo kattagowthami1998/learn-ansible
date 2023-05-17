@@ -1,5 +1,5 @@
-- name: Demo on play level varaibles
-  hosts : all
+- name: Demo on play level variables
+  hosts: all
   vars:
     URL: play.example.com
   tasks:
@@ -12,3 +12,12 @@
         # quotes are mandatory if value starts with a variable , meaning
         # msg: {{ URL }} <- This requires quoting
         # msg: URL - {{ URL }} <- This does not require quoting
+
+- name: Demo on task level variables
+  hosts: all
+  tasks:
+    - name: Print URL
+      ansible.builtin.debug:
+        msg: URL - {{ URL }}
+      vars:
+          URL: play.example.com
