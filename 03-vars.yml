@@ -13,6 +13,15 @@
         # msg: {{ URL }} <- This requires quoting
         # msg: URL - {{ URL }} <- This does not require quoting
 
+    - name: Load vars from a file
+      hosts: all
+      vars_files:
+        - exvars.yml
+      tasks:
+        - name: print url
+          ansible.builtin.debug:
+            msg: url - {{ URL }}
+
 - name: Demo on task level variables
   hosts: all
   tasks:
@@ -21,3 +30,12 @@
         msg: URL - {{ URL }}
       vars:
           URL: task.example.com
+
+# Only that task have that variable, other tasks cannot access it.
+
+- name: load vars from roles
+  hosts: all
+  vars:
+    URL_PLAY: play.example.com
+  roles:
+    -sample
