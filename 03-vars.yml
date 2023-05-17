@@ -13,14 +13,14 @@
         # msg: {{ URL }} <- This requires quoting
         # msg: URL - {{ URL }} <- This does not require quoting
 
-    - name: Load vars from a file
-      hosts: all
-      vars_files:
-        - exvars.yml
-      tasks:
-        - name: print url
-          ansible.builtin.debug:
-            msg: url - {{ URL }}
+- name: Load vars from a file
+  hosts: all
+  vars_files:
+      - exvars.yml
+  tasks:
+      - name: print url
+        ansible.builtin.debug:
+         msg: url - {{ URL }}
 
 - name: Demo on task level variables
   hosts: all
